@@ -12,14 +12,14 @@ SELECT
 FROM retail_sales
 WHERE
 	TransactionID IS NULL
-    OR Date IS NULL
-    OR CustomerID IS NULL
-    OR Gender IS NULL
-    OR Age IS NULL
-    OR ProductCategory IS NULL
-    OR Quantity IS NULL
-    OR PricePerUnit IS NULL
-    OR TotalAmount IS NULL;
+    	OR Date IS NULL
+    	OR CustomerID IS NULL
+    	OR Gender IS NULL
+    	OR Age IS NULL
+    	OR ProductCategory IS NULL
+    	OR Quantity IS NULL
+    	OR PricePerUnit IS NULL
+    	OR TotalAmount IS NULL;
 
 -- Number of transactions in a year
 SELECT COUNT(TransactionID) AS NumberOfTransactions
@@ -44,7 +44,7 @@ WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023;
 -- Total sales each month
 SELECT
 	DATE_FORMAT(Date, '%Y-%m') AS Month,
-    SUM(TotalAmount) AS TotalSales
+    	SUM(TotalAmount) AS TotalSales
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY Month
@@ -53,7 +53,7 @@ ORDER BY Month;
 -- Month with the highest total sales
 SELECT
 	DATE_FORMAT(Date, '%Y-%m') AS Month,
-    SUM(TotalAmount) AS TotalSales
+    	SUM(TotalAmount) AS TotalSales
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY Month
@@ -63,7 +63,7 @@ LIMIT 1;
 -- Month with the lowest total sales
 SELECT
 	DATE_FORMAT(Date, '%Y-%m') AS Month,
-    SUM(TotalAmount) AS TotalSales
+   	 SUM(TotalAmount) AS TotalSales
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY Month
@@ -77,8 +77,8 @@ SELECT CONCAT('Q',
 		WHEN MONTH(STR_TO_DATE(Date, '%Y-%m-%d')) BETWEEN 4 AND 6 THEN 2
 		WHEN MONTH(STR_TO_DATE(Date, '%Y-%m-%d')) BETWEEN 7 AND 9 THEN 3
 		WHEN MONTH(STR_TO_DATE(Date, '%Y-%m-%d')) BETWEEN 10 AND 12 THEN 4
-		END) AS Quarter,
-    SUM(TotalAmount) AS TotalSales
+	END) AS Quarter,
+    	SUM(TotalAmount) AS TotalSales
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY Quarter
@@ -86,20 +86,20 @@ ORDER BY Quarter;
 
 -- Total sales each month per product category
 SELECT
-    ProductCategory,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-01' THEN TotalAmount ELSE 0 END) AS Jan2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-02' THEN TotalAmount ELSE 0 END) AS Feb2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-03' THEN TotalAmount ELSE 0 END) AS Mar2023,
+	ProductCategory,
+   	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-01' THEN TotalAmount ELSE 0 END) AS Jan2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-02' THEN TotalAmount ELSE 0 END) AS Feb2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-03' THEN TotalAmount ELSE 0 END) AS Mar2023,
 	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-04' THEN TotalAmount ELSE 0 END) AS Apr2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-05' THEN TotalAmount ELSE 0 END) AS May2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-06' THEN TotalAmount ELSE 0 END) AS Jun2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-07' THEN TotalAmount ELSE 0 END) AS Jul2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-08' THEN TotalAmount ELSE 0 END) AS Aug2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-09' THEN TotalAmount ELSE 0 END) AS Sep2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-05' THEN TotalAmount ELSE 0 END) AS May2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-06' THEN TotalAmount ELSE 0 END) AS Jun2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-07' THEN TotalAmount ELSE 0 END) AS Jul2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-08' THEN TotalAmount ELSE 0 END) AS Aug2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-09' THEN TotalAmount ELSE 0 END) AS Sep2023,
 	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-10' THEN TotalAmount ELSE 0 END) AS Oct2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-11' THEN TotalAmount ELSE 0 END) AS Nov2023,
-    SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-12' THEN TotalAmount ELSE 0 END) AS Dec2023,
-    SUM(TotalAmount) AS TotalSales
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-11' THEN TotalAmount ELSE 0 END) AS Nov2023,
+    	SUM(CASE WHEN DATE_FORMAT(Date, '%Y-%m') = '2023-12' THEN TotalAmount ELSE 0 END) AS Dec2023,
+    	SUM(TotalAmount) AS TotalSales
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY ProductCategory;
@@ -107,7 +107,7 @@ GROUP BY ProductCategory;
 -- Total transactions by gender
 SELECT
 	Gender,
-    COUNT(TransactionID) AS TotalTransaction
+    	COUNT(TransactionID) AS TotalTransaction
 FROM retail_sales
 GROUP BY Gender;
 
@@ -115,11 +115,11 @@ GROUP BY Gender;
 SELECT
 	CASE
 		WHEN Age BETWEEN 18 AND 30 THEN '18-30'
-        WHEN Age BETWEEN 31 AND 45 THEN '31-45'
-        WHEN Age > 45 THEN '45+'
+        	WHEN Age BETWEEN 31 AND 45 THEN '31-45'
+        	WHEN Age > 45 THEN '45+'
 		ELSE 0
-    END AS AgeGroup,
-    COUNT(TransactionID) AS TotalTransactions
+    	END AS AgeGroup,
+	COUNT(TransactionID) AS TotalTransactions
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY AgeGroup
@@ -128,7 +128,7 @@ ORDER BY AgeGroup;
 -- Average sales by gender
 SELECT
 	Gender,
-    AVG(TotalAmount) AS TotalSales
+    	AVG(TotalAmount) AS TotalSales
 FROM retail_sales
 GROUP BY Gender;
 
@@ -136,11 +136,11 @@ GROUP BY Gender;
 SELECT
 	CASE
 		WHEN Age BETWEEN 18 AND 30 THEN '18-30'
-        WHEN Age BETWEEN 31 AND 45 THEN '31-45'
-        WHEN Age > 45 THEN '45+'
+        	WHEN Age BETWEEN 31 AND 45 THEN '31-45'
+        	WHEN Age > 45 THEN '45+'
 		ELSE 0
-    END AS AgeGroup,
-    AVG(TotalAmount) AS TotalSales
+    	END AS AgeGroup,
+	AVG(TotalAmount) AS TotalSales
 FROM retail_sales
 WHERE YEAR(STR_TO_DATE(Date, '%Y-%m-%d')) = 2023
 GROUP BY AgeGroup
