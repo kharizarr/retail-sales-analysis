@@ -1,4 +1,4 @@
--- Analysis retail sales in 2023
+-- Analysis retail sales performance in 2023
 
 CREATE DATABASE retail_sales_data;
 
